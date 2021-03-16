@@ -1,0 +1,48 @@
+#!/usr/bin/env python3
+import sys
+
+
+class BibTeX:
+
+    def __init__(self):
+        self.text = ''
+
+
+csv_file = open(sys.argv[1], 'rt')
+csv_text = csv_file.read()
+csv_file.close()
+csv_text = csv_text.splitlines()
+csv_head = csv_text[0]
+csv_head = csv_head.replace('"', '')
+csv_head_splitted = csv_head.split(',')
+authors_index = csv_head_splitted.index('Authors')
+year_index = csv_head_splitted.index('Year')
+title_index = csv_head_splitted.index('Title')
+journal_index = csv_head_splitted.index('Journal')
+volume_index = csv_head_splitted.index('Volume')
+bibtex = BibTeX()
+for line in csv_text[1::]:
+    splitted_line = line.split('",')
+    authors = splitted_line[authors_index].replace('"', '')
+    year = splitted_line[year_index].replace('"', '')
+    title = splitted_line[title_index].replace('"', '')
+    journal = splitted_line[journal_index].replace('"', '')
+    volume = splitted_line[volume_index].replace('"', '')
+    if journal != '':
+        bibtex.text = bibtex.text + '@ARTICLE'
+    else:
+        bibtex.text = bibtex.text + '@MISC'
+    void_str = ''
+    bibtex_key = void_str.join(
+        list(filter(lambda x: x.isalpha() or x.isspace(), title)))
+    bibtex_key = bibtex_key.replace(' ', '-') + year
+    bibtex.text = bibtex.text + '{' + bibtex_key + ",\n"
+    bibtex.text = bibtex.text + 'author = {' + authors + "},\n"
+    bibtex.text = bibtex.text + 'title = {{' + title + "}},\n"
+    if journal != '':
+        bibtex.text = bibtex.text + 'journal = {{' + journal + "}},\n"
+    if volume != '':
+        bibtex.text = bibtex.text + 'volume = {' + volume + "},\n"
+    bibtex.text = bibtex.text + 'year = {' + year + "}\n"
+    bibtex.text = bibtex.text + "}\n"
+print(bibtex.text)

@@ -1,0 +1,55 @@
+% !TeX encoding = UTF-8
+\documentclass[a4paper,12pt]{report}
+
+\usepackage{cmap}
+\usepackage[T1,T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english,russian]{babel}
+\usepackage{indentfirst}
+\usepackage{bm}
+\usepackage[rgb]{xcolor}
+\usepackage{listings}
+\usepackage{float}
+\usepackage{lscape}
+
+% Математика
+\usepackage{amsmath,amsfonts,bbm,gensymb,amssymb,amsthm,commath,mathtools} 
+
+% Изображения
+\usepackage{graphicx}
+% \usepackage{wrapfig}
+\usepackage[export]{adjustbox}
+
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+
+\usepackage{hyperref}
+\hypersetup{				% Гиперссылки
+	colorlinks=true,       	% false: ссылки в рамках
+	urlcolor=black          % на URL
+}
+% \usepackage[style=unsrt]{biblatex}
+% \addbibresource{isostd.bib}
+
+\title{Введите название Вашего труда}
+\author{Как Вас зовут?}
+
+\begin{document}
+\maketitle
+\begin{abstract}
+Данный труд посвящён вопросам, которые относятся к очень интересным вопросам, но от которых могут возникнуть другие не менее интересные вопросы. Больше вопросов -- больше ответов, а это хорошо, не так ли? Кстати, то же вопрос.
+\end{abstract}
+\tableofcontents
+\setlength{\parindent}{1.5em}
+\chapter{Вступление}
+
+Вначале было слово, и слово было Кнут. Дональд Кнут. Он выпустил систему компьютерной вёрстки \TeX в 1978 году. Молодец ли он? Конечно, молодец! А в 1984 году Лэсли Лэмпортом был разработан пакет макрорасширений для \TeX под названием \LaTeX. Разве не полезно? Полезнее, чем сырокопчёная колбаса!
+
+\chapter{Заключение}
+Мы разобрали больше чем все вопросы, и мы молодцы. Осталось разобрать ответы.
+
+\bibliographystyle{unsrt}
+\bibliography{isostd, global-security, global-security-systems-engineering, existential-risk-bibliography, other} 
+
+\end{document}
