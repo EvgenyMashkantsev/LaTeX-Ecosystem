@@ -3,13 +3,14 @@ compat50 2> /dev/null
 cd thirdparty/latextemplates.com || exit
 curl https://www.latextemplates.com/ > latextemplates.html
 grep http latextemplates.html | grep --fixed-string '/cat/' >categories-list.txt
-python3 urllist.py categories-list.txt > categories-url-list.txt
+cp ../../urllist.py urllist.py
+cp ../../gettemplatesfromcategory.bash gettemplatesfromcategory.bash
+python3 urllist.py 'categories-list.txt' > 'categories-url-list.txt'
 while IFS=, read -r line
 do
-    bash gettemplatesfromcategory.bash "${line}" &
-    rm -f templates-list.txt
-    rm -f templates-url-list.txt
-    cd ..
+    bash gettemplatesfromcategory.bash "${line}"
 done < categories-url-list.txt
+wait
 rm -f categories-list.txt
 rm -f categories-url-list.txt
+echo "Check templates download result in $(pwd)"
